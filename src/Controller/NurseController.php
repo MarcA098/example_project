@@ -4,122 +4,40 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 class NurseController extends AbstractController
 {
-    // Variable to search nurses
-    #[Route('/nurse', name: 'app_nurse')]
-    public function index(): JsonResponse
+    // Ruta para el endpoint
+    #[Route('/nurse/search', name: 'app_nurse_search')]
+    public function search(Request $request): JsonResponse
     {
-        $json= '[{"id":1,"first_name":"Tyne","last_name":"Furby","email":"tfurby0@multiply.com"},
+        $json = '[{"id":1,"first_name":"Tyne","last_name":"Furby","email":"tfurby0@multiply.com"},
         {"id":2,"first_name":"Madeline","last_name":"Skittrell","email":"mskittrell1@dot.gov"},
         {"id":3,"first_name":"Derron","last_name":"McEnhill","email":"dmcenhill2@nhs.uk"},
         {"id":4,"first_name":"Persis","last_name":"Hayer","email":"phayer3@yellowbook.com"},
-        {"id":5,"first_name":"Wallie","last_name":"Polgreen","email":"wpolgreen4@furl.net"},
-        {"id":6,"first_name":"Axe","last_name":"Soots","email":"asoots5@usda.gov"},
-        {"id":7,"first_name":"Janel","last_name":"Clifton","email":"jclifton6@timesonline.co.uk"},
-        {"id":8,"first_name":"Niven","last_name":"Benwell","email":"nbenwell7@nydailynews.com"},
-        {"id":9,"first_name":"Avie","last_name":"Loney","email":"aloney8@webnode.com"},
-        {"id":10,"first_name":"Jamie","last_name":"Proudley","email":"jproudley9@so-net.ne.jp"},
-        {"id":11,"first_name":"Flss","last_name":"Duggen","email":"fduggena@free.fr"},
-        {"id":12,"first_name":"Duke","last_name":"Cawthorne","email":"dcawthorneb@forbes.com"},
-        {"id":13,"first_name":"Cyndy","last_name":"MacInherney","email":"cmacinherneyc@boston.com"},
-        {"id":14,"first_name":"Georgeta","last_name":"Coppenhall","email":"gcoppenhalld@google.fr"},
-        {"id":15,"first_name":"Holly-anne","last_name":"Kruschev","email":"hkruscheve@plala.or.jp"},
-        {"id":16,"first_name":"Eustace","last_name":"Hayer","email":"ehayerf@engadget.com"},
-        {"id":17,"first_name":"Linet","last_name":"Borgne","email":"lborgneg@psu.edu"},
-        {"id":18,"first_name":"Xerxes","last_name":"Scarsbrook","email":"xscarsbrookh@g.co"},
-        {"id":19,"first_name":"Dorine","last_name":"Overthrow","email":"doverthrowi@aol.com"},
-        {"id":20,"first_name":"Garvy","last_name":"Bapty","email":"gbaptyj@nsw.gov.au"},
-        {"id":21,"first_name":"Gar","last_name":"Waterworth","email":"gwaterworthk@blogtalkradio.com"},
-        {"id":22,"first_name":"Irwinn","last_name":"Toten","email":"itotenl@google.de"},
-        {"id":23,"first_name":"Shelby","last_name":"Kinastan","email":"skinastanm@pcworld.com"},
-        {"id":24,"first_name":"Emmi","last_name":"Tregido","email":"etregidon@phpbb.com"},
-        {"id":25,"first_name":"Sayer","last_name":"Besnard","email":"sbesnardo@pbs.org"},
-        {"id":26,"first_name":"Katha","last_name":"Aslott","email":"kaslottp@reverbnation.com"},
-        {"id":27,"first_name":"Mandy","last_name":"Reyne","email":"mreyneq@dropbox.com"},
-        {"id":28,"first_name":"Ranice","last_name":"Epdell","email":"repdellr@reuters.com"},
-        {"id":29,"first_name":"Ethelyn","last_name":"Presnall","email":"epresnalls@symantec.com"},
-        {"id":30,"first_name":"Morgen","last_name":"Corns","email":"mcornst@hexun.com"},
-        {"id":31,"first_name":"Eberto","last_name":"Bernardy","email":"ebernardyu@netlog.com"},
-        {"id":32,"first_name":"Sallee","last_name":"Woolens","email":"swoolensv@netscape.com"},
-        {"id":33,"first_name":"Kari","last_name":"Owtram","email":"kowtramw@goodreads.com"},
-        {"id":34,"first_name":"Daphna","last_name":"Van Niekerk","email":"dvanniekerkx@addthis.com"},
-        {"id":35,"first_name":"Haleigh","last_name":"Bush","email":"hbushy@t-online.de"},
-        {"id":36,"first_name":"Alie","last_name":"Kimmins","email":"akimminsz@goodreads.com"},
-        {"id":37,"first_name":"Isabella","last_name":"Caudwell","email":"icaudwell10@imgur.com"},
-        {"id":38,"first_name":"Myrtice","last_name":"Meneghi","email":"mmeneghi11@netlog.com"},
-        {"id":39,"first_name":"Nola","last_name":"Balsdone","email":"nbalsdone12@yelp.com"},
-        {"id":40,"first_name":"Alisun","last_name":"Ridewood","email":"aridewood13@ezinearticles.com"},
-        {"id":41,"first_name":"Jdavie","last_name":"Haldin","email":"jhaldin14@symantec.com"},
-        {"id":42,"first_name":"Alvin","last_name":"McPhillips","email":"amcphillips15@about.me"},
-        {"id":43,"first_name":"Jo ann","last_name":"Vezey","email":"jvezey16@redcross.org"},
-        {"id":44,"first_name":"Ewell","last_name":"Whittaker","email":"ewhittaker17@amazon.co.jp"},
-        {"id":45,"first_name":"Howey","last_name":"Ellams","email":"hellams18@amazon.de"},
-        {"id":46,"first_name":"Danita","last_name":"Huntley","email":"dhuntley19@marriott.com"},
-        {"id":47,"first_name":"Angelo","last_name":"Olyunin","email":"aolyunin1a@jiathis.com"},
-        {"id":48,"first_name":"Helli","last_name":"Briance","email":"hbriance1b@odnoklassniki.ru"},
-        {"id":49,"first_name":"Muffin","last_name":"Kidd","email":"mkidd1c@google.ca"},
-        {"id":50,"first_name":"Ker","last_name":"Deaton","email":"kdeaton1d@ebay.com"},
-        {"id":51,"first_name":"Inez","last_name":"Leroy","email":"ileroy1e@mozilla.org"},
-        {"id":52,"first_name":"Dosi","last_name":"Rablen","email":"drablen1f@imdb.com"},
-        {"id":53,"first_name":"Rudyard","last_name":"Pauly","email":"rpauly1g@usnews.com"},
-        {"id":54,"first_name":"Wendi","last_name":"Bowring","email":"wbowring1h@unesco.org"},
-        {"id":55,"first_name":"Daniel","last_name":"Stanistreet","email":"dstanistreet1i@psu.edu"},
-        {"id":56,"first_name":"Barrett","last_name":"Danilishin","email":"bdanilishin1j@hhs.gov"},
-        {"id":57,"first_name":"Walt","last_name":"McNeigh","email":"wmcneigh1k@1688.com"},
-        {"id":58,"first_name":"Franky","last_name":"Skirlin","email":"fskirlin1l@oaic.gov.au"},
-        {"id":59,"first_name":"Kylynn","last_name":"Ekell","email":"kekell1m@businesswire.com"},
-        {"id":60,"first_name":"Kathy","last_name":"Smetoun","email":"ksmetoun1n@typepad.com"},
-        {"id":61,"first_name":"Roderic","last_name":"Bellard","email":"rbellard1o@ow.ly"},
-        {"id":62,"first_name":"Alan","last_name":"Backe","email":"abacke1p@economist.com"},
-        {"id":63,"first_name":"Angie","last_name":"Ingolotti","email":"aingolotti1q@sitemeter.com"},
-        {"id":64,"first_name":"Berny","last_name":"McFade","email":"bmcfade1r@creativecommons.org"},
-        {"id":65,"first_name":"Doralia","last_name":"Chadburn","email":"dchadburn1s@tumblr.com"},
-        {"id":66,"first_name":"Lynelle","last_name":"Ewer","email":"lewer1t@netlog.com"},
-        {"id":67,"first_name":"Gussie","last_name":"Weaver","email":"gweaver1u@dell.com"},
-        {"id":68,"first_name":"Jilli","last_name":"Kloska","email":"jkloska1v@chronoengine.com"},
-        {"id":69,"first_name":"Melisenda","last_name":"Cuell","email":"mcuell1w@bloglines.com"},
-        {"id":70,"first_name":"Anna","last_name":"Plowman","email":"aplowman1x@wired.com"},
-        {"id":71,"first_name":"Desirae","last_name":"Mulvin","email":"dmulvin1y@networkadvertising.org"},
-        {"id":72,"first_name":"Selene","last_name":"Esslemont","email":"sesslemont1z@reference.com"},
-        {"id":73,"first_name":"Bartlet","last_name":"Kendal","email":"bkendal20@apache.org"},
-        {"id":74,"first_name":"Thain","last_name":"Murtimer","email":"tmurtimer21@nytimes.com"},
-        {"id":75,"first_name":"Roz","last_name":"Kollatsch","email":"rkollatsch22@disqus.com"},
-        {"id":76,"first_name":"Carolee","last_name":"Ivachyov","email":"civachyov23@google.fr"},
-        {"id":77,"first_name":"Livy","last_name":"Guswell","email":"lguswell24@admin.ch"},
-        {"id":78,"first_name":"Lea","last_name":"Doers","email":"ldoers25@is.gd"},
-        {"id":79,"first_name":"Agneta","last_name":"Gorries","email":"agorries26@sphinn.com"},
-        {"id":80,"first_name":"Tonnie","last_name":"Figin","email":"tfigin27@wikispaces.com"},
-        {"id":81,"first_name":"Nanine","last_name":"Leeves","email":"nleeves28@amazonaws.com"},
-        {"id":82,"first_name":"Vaughan","last_name":"Sebrook","email":"vsebrook29@1688.com"},
-        {"id":83,"first_name":"Stan","last_name":"Yacob","email":"syacob2a@nationalgeographic.com"},
-        {"id":84,"first_name":"Gwenny","last_name":"Ronald","email":"gronald2b@fc2.com"},
-        {"id":85,"first_name":"Woodman","last_name":"Butland","email":"wbutland2c@usnews.com"},
-        {"id":86,"first_name":"Vi","last_name":"Caplin","email":"vcaplin2d@google.es"},
-        {"id":87,"first_name":"Nicol","last_name":"Keslake","email":"nkeslake2e@joomla.org"},
-        {"id":88,"first_name":"Ingamar","last_name":"Gutridge","email":"igutridge2f@rambler.ru"},
-        {"id":89,"first_name":"Normy","last_name":"Goolding","email":"ngoolding2g@nbcnews.com"},
-        {"id":90,"first_name":"Davon","last_name":"Kopp","email":"dkopp2h@godaddy.com"},
-        {"id":91,"first_name":"Simon","last_name":"Pero","email":"spero2i@google.co.uk"},
-        {"id":92,"first_name":"Tye","last_name":"Manning","email":"tmanning2j@gravatar.com"},
-        {"id":93,"first_name":"Hester","last_name":"Ceyssen","email":"hceyssen2k@pen.io"},
-        {"id":94,"first_name":"Berne","last_name":"Pesticcio","email":"bpesticcio2l@cnet.com"},
-        {"id":95,"first_name":"Israel","last_name":"Jackett","email":"ijackett2m@uol.com.br"},
-        {"id":96,"first_name":"Dorena","last_name":"Airdrie","email":"dairdrie2n@cargocollective.com"},
-        {"id":97,"first_name":"Benjy","last_name":"Grigoryov","email":"bgrigoryov2o@mozilla.com"},
-        {"id":98,"first_name":"Shelby","last_name":"Le Friec","email":"slefriec2p@imgur.com"},
-        {"id":99,"first_name":"Patrizius","last_name":"Cleft","email":"pcleft2q@disqus.com"},
-        {"id":100,"first_name":"Crichton","last_name":"Vlahos","email":"cvlahos2r@opera.com"}]';
-
-    $nurseArray = json_decode($json, true);
-    print_r($nurseArray);
+        {"id":5,"first_name":"Wallie","last_name":"Polgreen","email":"wpolgreen4@furl.net"}]';
         
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/NurseController.php',
-            'data' => '$nurseArray',
-        ]);
+        // Decodificar el JSON a un array asociativo
+        $nurseArray = json_decode($json, true);
+
+        // Asignar a la varible el parámetro de búsqueda 'name'
+        $searchName = $request->query->get('name');
+
+        // Filtrar enfermeros ya sea por nombre o apellido
+        $filteredNurses = array_filter($nurseArray, function ($nurse) use ($searchName) {
+            return stripos($nurse['first_name'], $searchName) !== false || 
+                   stripos($nurse['last_name'], $searchName) !== false;
+        });
+
+        // Verificar la búsqueda
+        if (empty($filteredNurses)) {
+            // Respuesta JSON con el mensaje de no encontrado
+            return $this->json(['message' => 'Enfermer@ no encontrad@']);
+        }
+
+        // Jason con los datos encontrados
+        return $this->json(array_values($filteredNurses));
     }
 }
